@@ -61,6 +61,10 @@ function draw() {
 
    let amp = map(pitch, -180, 180, 1, 0.01);
    osc.amp(amp);
+ play.onclick = function() {
+audioSource.start(0);
+//or another function to use audio source
+}
 }
   
 // if there's no port selected, 
