@@ -115,6 +115,10 @@ function portConnect() {
   console.log("port connected");
   serial.getPorts();
 }
+
+function mousePressed() {
+  userStartAudio();
+}
   
 // if a port is disconnected:
 function portDisconnect() {
