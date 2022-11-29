@@ -1,8 +1,13 @@
 // variable to hold an instance of the p5.webserial library:
 const serial = new p5.WebSerial();
-  
+let osc, fft;
+
 // HTML button object:
 let portButton;
+let heading = 0.0;
+let pitch = 0.0;
+let roll = 0.0;
+
  
 function setup() {
     createCanvas(500, 600, WEBGL);     // make the canvas
@@ -10,6 +15,11 @@ function setup() {
   if (!navigator.serial) {
     alert("WebSerial is not supported in this browser. Try Chrome or MS Edge.");
   }
+  osc = new p5.TriOsc(); // set frequency and type
+  osc.amp(0.5);
+
+  fft = new p5.FFT();
+  osc.start();
   // if serial is available, add connect/disconnect listeners:
   navigator.serial.addEventListener("connect", portConnect);
   navigator.serial.addEventListener("disconnect", portDisconnect);
@@ -45,6 +55,11 @@ function draw() {
    // draw arduino board:
    drawArduino();
    pop(); // end of object
+   let freq = map(heading, 0, 360, 40, 880);
+   osc.freq(freq);
+
+   let amp = map(pitch, -180, 180, 1, 0.01);
+   osc.amp(amp);
 }
   
 // if there's no port selected, 
