@@ -63,7 +63,7 @@ function draw() {
    osc.amp(amp);
 
 }
-}
+
   
 // if there's no port selected, 
 // make a port select button appear:
