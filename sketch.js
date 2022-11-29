@@ -15,6 +15,7 @@ function setup() {
   if (!navigator.serial) {
     alert("WebSerial is not supported in this browser. Try Chrome or MS Edge.");
   }
+  getAudioContext().suspend();
   osc = new p5.TriOsc(); // set frequency and type
   osc.amp(0.5);
 
@@ -60,6 +61,7 @@ function draw() {
 
    let amp = map(pitch, -180, 180, 1, 0.01);
    osc.amp(amp);
+   userStartAudio();
 }
   
 // if there's no port selected, 
