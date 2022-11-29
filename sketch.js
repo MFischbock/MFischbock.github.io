@@ -26,11 +26,25 @@ function setup() {
   serial.on("close", makePortButton);
 }
 function draw() {
+   // update the drawing:
    background(255); // set background to white
    push();          // begin object to draw
+ 
+   // variables for matrix translation:
+   let c1 = cos(radians(roll));
+   let s1 = sin(radians(roll));
+   let c2 = cos(radians(pitch));
+   let s2 = sin(radians(pitch));
+   let c3 = cos(radians(heading));
+   let s3 = sin(radians(heading));
+   applyMatrix(c2 * c3, s1 * s3 + c1 * c3 * s2,
+      c3 * s1 * s2 - c1 * s3, 0, -s2, c1 * c2,
+      c2 * s1, 0, c2 * s3, c1 * s2 * s3 - c3 * s1,
+      c1 * c3 + s1 * s2 * s3, 0, 0, 0, 0, 1);
+ 
    // draw arduino board:
    drawArduino();
-   pop();           // end of object
+   pop(); // end of object
 }
   
 // if there's no port selected, 
