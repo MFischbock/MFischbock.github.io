@@ -8,9 +8,10 @@ let heading = 0.0;
 let pitch = 0.0;
 let roll = 0.0;
 
-GazeCloudAPI.StartEyeTracking();
- 
+
 function setup() {
+ GazeCloudAPI.StartEyeTracking();
+ 
     createCanvas(500, 600, WEBGL);     // make the canvas
   // check to see if serial is available:
   if (!navigator.serial) {
@@ -36,6 +37,9 @@ function setup() {
   // handle any incoming serial data:
   serial.on("data", serialEvent);
   serial.on("close", makePortButton);
+
+  GazeCloudAPI.OnResult = function (GazeData) { GazeData.state // 0: valid gaze data; -1 : face tracking lost, 1 : gaze data uncalibrated GazeData.docX // gaze x in document coordinates GazeData.docY // gaze y in document coordinates GazeData.time // timestamp }
+  GazeCloudAPI.OnCalibrationComplete =function(){ console.log('gaze Calibration Complete') }
 }
 function draw() {
 
@@ -64,7 +68,7 @@ function draw() {
 
    let amp = map(pitch, -180, 180, 1, 0.01);
    osc.amp(amp);
-
+  
 }
 
   
