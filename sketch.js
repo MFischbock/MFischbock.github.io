@@ -8,6 +8,7 @@ let heading = 0.0;
 let pitch = 0.0;
 let roll = 0.0;
 
+GazeCloudAPI.StartEyeTracking();
  
 function setup() {
     createCanvas(500, 600, WEBGL);     // make the canvas
