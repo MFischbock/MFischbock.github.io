@@ -38,6 +38,8 @@ function setup() {
   serial.on("close", makePortButton);
 }
 function draw() {
+
+ console.log(GazeCloudAPI.OnResult = function (GazeData) { GazeData.state // 0: valid gaze data; -1 : face tracking lost, 1 : gaze data uncalibrated GazeData.docX // gaze x in document coordinates GazeData.docY // gaze y in document coordinates GazeData.time // timestamp })
    // update the drawing:
    background(255); // set background to white
    push();          // begin object to draw
